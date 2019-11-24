@@ -11,15 +11,15 @@ public class MultServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int value = 0;
-        int statusCode = HttpServletResponse.SC_BAD_REQUEST;
+        int statusCode = HttpServletResponse.SC_OK;
 
         String paramValue = request.getParameter("value");
 
         if (paramValue != null) {
             try {
                 value = 2 * Integer.parseInt(paramValue);
-                statusCode = HttpServletResponse.SC_OK;
-            } catch (NumberFormatException ignored) {
+            } catch (NumberFormatException e) {
+                statusCode = HttpServletResponse.SC_BAD_REQUEST;
             }
         }
 
